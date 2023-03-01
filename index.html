@@ -13,7 +13,16 @@
 <body>
   <main>
     <div class="calculator">
-      <input type="text" class="display" id="display" readonly>
+      <div type="text" class="display" id="display" readonly>
+        <div class="operation-holder">
+          <p id="n1"></p>
+          <p id="op"></p>
+          <p id="n2"></p>
+        </div>
+        <div class="result-holder">
+          <p id="result"></p>
+        </div>
+      </div>
       <button class="clear">C</button>
       <button class="backspace">&DoubleLeftArrow;</button>
       <button class="operator">&divide;</button>
