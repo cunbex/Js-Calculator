@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <script src="script/script.js" defer></script>
+  <title>Calculator</title>
+</head>
+
+<body>
+  <main>
+    <div class="calculator">
+      <input type="text" class="display" id="display" readonly>
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="backspace" onclick="backspace()">&DoubleLeftArrow;</button>
+      <button class="operator" onclick="appendToDisplay('/')">&divide;</button>
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button class="operator" onclick="appendToDisplay('*')">*</button>
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button class="operator" onclick="appendToDisplay('-')">-</button>
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button class="operator" onclick="appendToDisplay('+')">+</button>
+      <button onclick="appendToDisplay('0')">0</button>
+      <button onclick="appendToDisplay('00')">00</button>
+      <button onclick="appendToDisplay('.')">.</button>
+      <button class="calculate" onclick="calculate()">&equals;</button>
+    </div>
+  </main>
+  <footer>
+    <p>Copyright &copy; 2023 Cunbex </p>
+    <a target="_blank" href="https://github.com/cunbex/project-Etch-A-Sketch"><img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Github-circle_%28CoreUI_Icons_v1.0.0%29.svg/2048px-Github-circle_%28CoreUI_Icons_v1.0.0%29.svg.png"
+        alt="Github logo">
+    </a>
+  </footer>
+</body>
+
+</html>
