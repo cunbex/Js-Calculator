@@ -31,7 +31,6 @@ buttons.forEach((button) => {
       button.addEventListener("click", floatPoint);
       break;
     default:
-      alert("Error");
       break;
   }
 });
@@ -44,6 +43,7 @@ function clear() {
   op.innerText = "";
   n2.innerText = "";
 }
+
 function floatPoint() {
   switch (true) {
     case operate.firstNumber === "" ||
@@ -66,6 +66,7 @@ function floatPoint() {
   }
   writeData();
 }
+
 function backspace() {
   if (operate.secondNumber !== "") {
     operate.secondNumber = operate.secondNumber.substring(
@@ -82,7 +83,16 @@ function backspace() {
   }
   writeData();
 }
+
 function calculate() {
+  if (
+    operate.operation === "" ||
+    operate.firstNumber === "" ||
+    operate.secondNumber === ""
+  ) {
+    confirm("please provide a full operation");
+    return;
+  }
   nb1 = parseFloat(operate.firstNumber);
   nb2 = parseFloat(operate.secondNumber);
   switch (operate.operation) {
@@ -106,22 +116,9 @@ function calculate() {
   }
   writeResult();
 }
+
 function digit(e) {
   switch (true) {
-    case (operate.secondNumber.length > 2 &&
-      !operate.secondNumber.includes(".")) ||
-      (operate.firstNumber.length > 2 && !operate.firstNumber.includes(".")):
-      confirm(
-        "Please keep the numbers in 10's max for the clean layout, if this keeps prompting use backspace to remove 1 digit"
-      );
-      return;
-    case (operate.secondNumber.length > 5 &&
-      operate.secondNumber.includes(".")) ||
-      (operate.firstNumber.length > 5 && operate.firstNumber.includes(".")):
-      confirm(
-        "Please keep the numbers in 10's max for the clean layout, if this keeps prompting use backspace to remove 1 digit"
-      );
-      return;
     case operate.operation === "":
       operate.firstNumber += e.target.textContent;
       break;
@@ -132,19 +129,21 @@ function digit(e) {
   }
   writeData();
 }
+
 function operation(e) {
   switch (true) {
     case e.target.className === "operator" &&
-      operate.firstNumber === "" &&
+      operate.firstNumber !== "" &&
       operate.secondNumber === "":
-      confirm("Please enter a number");
+      operate.operation = e.target.textContent;
       break;
     case e.target.className === "operator" &&
-      (operate.firstNumber !== "" || operate.secondNumber !== ""):
+      operate.firstNumber !== "" &&
+      operate.secondNumber !== "":
+      calculate();
       operate.operation = e.target.textContent;
       break;
     default:
-      alert("error in operation");
       break;
   }
   writeData();
@@ -155,10 +154,16 @@ function writeData() {
   n2.innerText = operate.secondNumber;
   op.innerText = operate.operation;
 }
+
 function writeResult() {
+  let result = operate.result;
   if (operate.firstNumber.includes(".") || operate.secondNumber.includes(".")) {
-    rs.innerText = operate.result.toFixed(3);
+    result = parseFloat(operate.result).toFixed(3);
+    rs.innerText = result;
   } else {
-    rs.innerText = operate.result;
+    rs.innerText = result;
   }
+  clear();
+  n1.innerText = result;
+  operate.firstNumber += result;
 }
